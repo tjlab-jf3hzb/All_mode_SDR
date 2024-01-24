@@ -3,7 +3,7 @@
 
 #include "image/met_image107_3.h"
 
-//--------- Need editting values -----------------------------//
+//----------- Need to edit values -----------------------------//
 #define fxtal   25000000   // Ref. frequency of Si5351A [Hz]
 #define fcf     16930000   // Filter center frequency [Hz]
 #define fadj_TX    0       // Adjust vale for TX frequency [Hz]
@@ -35,12 +35,13 @@
 #define T_slowAGC 0.9998f
 #define T_normAGC 0.9994f
 #define T_fastAGC 0.9990f
+#define Comp_rate 0.5f
 
 
-// Mic. comp.
+// Mic. comp. (Limitter)
 #define T_micAGC 0.9990f
 #define T_At_AGC 0.9f
-#define Comp_rate 0.5f
+
 
 
 // RX gain
