@@ -52,6 +52,7 @@
 
 // TX para.
 #define Gain_MIC 5.0f
+#define Gain_OUTPUT 1.0f
 #define AM_Carrier_coeff 0.18e9
 #define FM_deviation_coeff 0.002e-5
 #define SIDE_TONE_VOL 0.5f

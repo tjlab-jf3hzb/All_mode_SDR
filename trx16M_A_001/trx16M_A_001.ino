@@ -628,7 +628,7 @@ void loop(void) {
     //Output to I2S codec
     j=0;
     float m;
-    if( (f_TX == false && f_MODE == FM  && f_SQLMUTE == true) || MUTE_Timer>0 ) m=0; else m=1.0f;
+    if( (f_TX == false && f_MODE == FM  && f_SQLMUTE == true) || MUTE_Timer>0 ) m=0; else m=Gain_OUTPUT;
     
     for (int i=0; i<BLOCK_SAMPLES; i++) 
     {
