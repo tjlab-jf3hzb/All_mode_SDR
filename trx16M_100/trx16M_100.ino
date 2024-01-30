@@ -2,7 +2,7 @@
 16.93MHz All mode TRX on ESP32-S3
 
  by JF3HZB/T.Uebo, Tj Lab
- Jan. 15, 2024
+ Jan. 30, 2024
 
 
 Arduino IDE 2.2.1
@@ -28,8 +28,8 @@ Used Libraries
 
 */
 
-#define NAME "SDR TRX"
-#define VERSION "A-0.01"
+#define NAME "All Mode SDR TRX"
+#define VERSION "Ver. 1.00"
 #define ID "JF3HZB/Tj Lab"
 
 #include <driver/i2s.h>
