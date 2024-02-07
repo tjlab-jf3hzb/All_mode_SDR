@@ -3,9 +3,12 @@
 
 #include "image/met_image107_3.h"
 
+#include "ST7735S_128x160.hpp"
+//#include "ST7735S_128x160_2.hpp"
+
 //----------- Need to edit values -----------------------------//
 #define fxtal   25000000   // Ref. frequency of Si5351A [Hz]
-#define fcf     16930000   // Filter center frequency [Hz]
+#define fcf     16930000  // Filter center frequency [Hz]
 #define fadj_TX    0       // Adjust vale for TX frequency [Hz]
 
 
@@ -52,16 +55,26 @@
 
 // TX para.
 #define Gain_MIC 5.0f
-#define Gain_OUTPUT 1.0f
+#define SIDE_TONE_VOL 0.5f
+
+#define OUTLEVEL_SSB 1.0f
+#define OUTLEVEL_AM 1.0f
+#define OUTLEVEL_CW 1.0f
+#define OUTLEVEL_FM 1.0f
+
 #define AM_Carrier_coeff 0.18e9
 #define FM_deviation_coeff 0.002e-5
-#define SIDE_TONE_VOL 0.5f
 //------------------------------------------------------//
 
 
-#define fcar 30000
+
+
+#define fsx4     480768
+#define fs_real (fsx4 / 4)
+#define fcar    (fsx4 / 16)
+
 // Output frequency of Si5351A
 #define freq_RX (fcf + fcar)
-#define freq_TX ( freq_RX - (fcar*16) + fadj_TX )
+#define freq_TX ( freq_RX - (fsx4) + fadj_TX )
 
 #endif	/* PRM_H */

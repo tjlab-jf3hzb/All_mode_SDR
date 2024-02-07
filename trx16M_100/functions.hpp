@@ -8,7 +8,6 @@
 #define	FUNCTIONS_H
 
 #include <esp_dsp.h>
-#include "ST7735S_128x160.hpp"
 #include "prm.h"
 
 #define lim_lvl 0.25e9

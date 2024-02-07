@@ -1,5 +1,5 @@
-Source:,F:\0_work\__Tj_Lab__\_Radio\SDR\ESP32-S3\Hardware\Rev_A\TRX_ESP32-S3_A.kicad_sch,,,,,,
-Date:,2024/01/26 13:17:51,,,,,,
+Source:,F:\0_work\__Tj_Lab__\_Radio\SDR\ESP32-S3\Hardware\Rev_A\TRX_ESP32-S3_B.kicad_sch,,,,,,
+Date:,2023/12/25 13:33:06,,,,,,
 Tool:,Eeschema 7.0.7,,,,,,
 Generator:,C:\Program Files\KiCad\7.0\bin\scripting\plugins/bom_csv_grouped_by_value_with_fp.py,,,,,,
 Component Count:,162,,,,,,
@@ -9,7 +9,7 @@ Ref,Qnty,Value,Cmp name,Footprint,Description,Vendor,DNP
 "C3, C12, C13, C14, C38, C40, C45, C46, C47, C55, C57, C61, C62, C63, C65, C68, C70, C71, C72, C73, C74, C75",22,10u,C_Small,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"Unpolarized capacitor, small symbol",,
 "C8, C10, C20, C23, C30, C36, C37, C43, C44, C56",10,0.01u,C_Small,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"Unpolarized capacitor, small symbol",,
 "C11, C15, C18, C24, C25, C26, C27, C28, C35, C41, C42, C48, C50, C51, C54, C58, C66",17,0.1u,C_Small,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"Unpolarized capacitor, small symbol",,
-"C16, C17, C19",3,-,C_Small,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"Unpolarized capacitor, small symbol",,DNP
+"C16, C17, C19",3,0.1u,C_Small,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"Unpolarized capacitor, small symbol",,DNP
 "C49, C60, C69",3,1000p,C_Small,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"Unpolarized capacitor, small symbol",,
 "C52, C53",2,2.2u,C_Small,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"Unpolarized capacitor, small symbol",,
 C59,1,100p,C_Small,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"Unpolarized capacitor, small symbol",,
@@ -31,12 +31,12 @@ J12,1,VCC AF,Conn_01x02,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertic
 Q1,1,2SC945,Q_NPN_ECB,Package_TO_SOT_THT:TO-92L_Inline_Wide,"NPN transistor, emitter/collector/base",,
 "R1, R19, R23, R39",4,330,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 "R2, R17, R18, R38",4,1k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
-"R3, R4, R30, R43",4,3.3k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
-"R5, R26, R27, R29, R31, R32, R33, R34, R35, R48, R49",11,47,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
+"R3, R4, R30, R43, R49",5,3.3k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
+"R5, R26, R27, R29, R31, R32, R33, R34, R35, R48",10,47,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 "R6, R20, R21, R41",4,10k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 "R7, R9, R12, R14",4,2.2k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 R8,1,330,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,DNP
-"R10, R11, R13",3,-,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,DNP
+"R10, R11, R13",3,22k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,DNP
 "R15, R16",2,4.7k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 R22,1,100,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 R24,1,47k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
@@ -44,15 +44,15 @@ R25,1,22k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"R
 "R28, R36",2,1.5k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 R37,1,33k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 R40,1,470,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
-R42,1,-,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,DNP
+R42,1,33k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,DNP
 R44,1,150,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 "R45, R46",2,100k,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 R47,1,10,R_Small_US,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,"Resistor, small US symbol",,
 RV1,1,50k,R_Potentiometer_Trim_US,Tj:Potentiometer_TOCOS_GF063P,"Trim-potentiometer, US symbol",,
-T1,1,FB801 4Tx3,TRANSF4,Tj:10KCoil,,,
+T1,1,FT37-43 8Tx3,TRANSF4,Tj:10KCoil,,,
 "U1, U2",2,NJM2845DL1-33,LM7805_TO220,Package_TO_SOT_SMD:TO-252-2,"Positive 1A 35V Linear Regulator, Fixed Output 5V, TO-220",,
 "U3, U4",2,MCP4725A0T-E_CH,MCP4725xxx-xCH,Package_TO_SOT_SMD:SOT-23-6,"12-bit Digital-to-Analog Converter, integrated EEPROM, I2C interface, SOT-23-6",,
-U5,1,Si5351A,Si5351A,Package_SO:MSOP-10_3x3mm_P0.5mm,,,
+U5,1,Si5351,Si5351,Package_SO:MSOP-10_3x3mm_P0.5mm,,,
 U6,1,ESP32-S3-WROOM-1-N16R8,ESP32_S3_1,Tj:ESP32-S3-WROOM-1_Tj,,,
 U7,1,74CBTLV3253,74BCT3253,Package_SO:SOIC-16_3.9x9.9mm_P1.27mm,,,
 "U8, U10, U11",3,TAR5SB33,AP131-15,Package_TO_SOT_SMD:SOT-23-5,"300mA low dropout linear regulator, shutdown pin, 1.5V fixed positive output, SOT-23-5",,

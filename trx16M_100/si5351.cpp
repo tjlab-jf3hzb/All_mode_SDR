@@ -92,11 +92,6 @@ void cmd_si5351_block(unsigned char reg_No, unsigned char *d){
 
 
 
-
-
-
-
-
 void set_freq(unsigned long freq){
 //    freq [Hz]
 //
@@ -144,9 +139,9 @@ void set_freq(unsigned long freq){
   	freq*=M;
   	freq<<=R;
   	
-  	c=0xFFFFF;	
+  	c=0xFFFFF;
   	a=freq/fxtal;
-  	b=(long)((float)(freq-a*fxtal)*(float)c/(float)fxtal);
+  	b=(unsigned long)((double)(freq-a*fxtal)*(double)c/(double)fxtal);
   	dd=(128*b)/c;
   	P1=128*a+dd-512;
   	P2=128*b-c*dd;
@@ -206,7 +201,7 @@ void set_freq(unsigned long freq){
     	}
 
     	cmd_si5351(165,0);
-    	cmd_si5351(167,M);
+    	cmd_si5351(167,0);
     	cmd_si5351(177,0x20);   // Reset PLLA
     }
     
@@ -214,7 +209,7 @@ void set_freq(unsigned long freq){
   }//------------------- End of set freq>=3MHz----------------------------------------------
   
   else { //-------------------freq<3MHz-----------------------------------------------------
-    
+   
     long fvco;
 
     if     (freq>=1500000){ FL=1; fvco=freq*300;}
@@ -230,7 +225,7 @@ void set_freq(unsigned long freq){
 
       c=0xFFFFF; 
       a=fvco/fxtal;
-      b=(long)((double)(fvco-a*fxtal)*(double)c/(double)fxtal);
+      b=(unsigned long)((double)(fvco-a*fxtal)*(double)c/(double)fxtal);
       dd=(128*b)/c;
       P1=128*a+dd-512;
       P2=128*b-c*dd;
@@ -272,7 +267,7 @@ void set_freq(unsigned long freq){
       cmd_si5351(177,0x20);   // Reset PLLA 
 
       a=fvco/( freq );
-      b=(long)( (double)(fvco-a*freq )*(double)c/(double)(freq) );
+      b=(unsigned long)( (double)(fvco-a*freq )*(double)c/(double)(freq) );
       dd=(128*b)/c;
       P1=128*a+dd-512;
       P2=128*b-c*dd;
@@ -293,7 +288,7 @@ void set_freq(unsigned long freq){
     }
 
     a=fvco/fxtal;
-    b=(long)((float)(fvco-a*fxtal)*(float)c/(float)fxtal);
+    b=(unsigned long)((double)(fvco-a*fxtal)*(double)c/(double)fxtal);
     dd=(128*b)/c;
     P1=128*a+dd-512;
     P2=128*b-c*dd;
@@ -308,7 +303,7 @@ void set_freq(unsigned long freq){
     cmd_si5351(31,(P3>>12)&0xF0|(P2>>16)&0x0F);//MSNA_P3[19:16], MSNA_P2[19:16]
     cmd_si5351(32,(P2>>8)&0xFF);        //MSNA_P2[15:8]
     cmd_si5351(33,P2&0xFF);             //MSNA_P2[7:0]
-	
+
   } //-------------------------- End of set freq<3MHz---------------------------------------------
 
   
@@ -369,7 +364,7 @@ void set_car_freq(unsigned long freq, unsigned char EN, unsigned char RST){
       
       unsigned long c=0xFFFFF;  
       unsigned long a=freq/fxtal;
-      unsigned long b=(long)((float)(freq-a*fxtal)*(float)c/(float)fxtal);
+      unsigned long b=(unsigned long)((double)(freq-a*fxtal)*(double)c/(double)fxtal);
       unsigned long dd=(128*b)/c;
       unsigned long P1=128*a+dd-512;
       unsigned long P2=128*b-c*dd;

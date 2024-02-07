@@ -365,11 +365,19 @@ void loop(void) {
         {
           RXsig[i] *=Gain_SSB_CW;
           float absl = fabs(RXsig[i])-lim_lvl;
-          if( absl<0 ) absl = 0; 
-          if(absl>g_lim)
-            g_lim = g_lim*T_At_AGC + absl*(1.0f-T_At_AGC);
+          if( absl<0 ) absl = 0;
+
+          if(MUTE_Timer == 0)
+          { 
+            if(absl>g_lim)
+              g_lim = g_lim*T_At_AGC + absl*(1.0f-T_At_AGC);
+            else
+              g_lim*=T_R_AGC;
+          }
           else
-            g_lim*=T_R_AGC;
+          {
+            g_lim = 0;
+          }
           RXsig[i] = RXsig[i] * (lim_lvl/(Comp_rate * g_lim+lim_lvl) );
         }
       }
@@ -393,11 +401,19 @@ void loop(void) {
           //Limitter(AGC)
           RXsig[i] *=Gain_AM;
           float absl = fabs(zDC*Gain_AM)-lim_lvl;
-          if( absl<0 ) absl = 0; 
-          if(absl>g_lim)
-            g_lim = g_lim*T_At_AGC + absl*(1.0f-T_At_AGC);
+          if( absl<0 ) absl = 0;
+
+          if(MUTE_Timer == 0)
+          {
+            if(absl>g_lim)
+              g_lim = g_lim*T_At_AGC + absl*(1.0f-T_At_AGC);
+            else
+              g_lim*=T_normAGC;
+          }
           else
-            g_lim*=T_normAGC;
+          {
+            g_lim = 0;
+          }
           RXsig[i] = RXsig[i] * (lim_lvl/(Comp_rate * g_lim+lim_lvl) );
         }
       }
@@ -422,10 +438,18 @@ void loop(void) {
           RXsig[i] *=Gain_FM;
           float absl = fabs(RXsig[i])-lim_lvl;
           if( absl<0 ) absl = 0; 
-          if(absl>g_lim)
-            g_lim = g_lim*T_At_AGC + absl*(1.0f-T_At_AGC);
+
+          if(MUTE_Timer == 0)
+          {
+            if(absl>g_lim)
+              g_lim = g_lim*T_At_AGC + absl*(1.0f-T_At_AGC);
+            else
+              g_lim*=0.999;
+          }
           else
-            g_lim*=0.999;
+          {
+            g_lim = 0;
+          }
           RXsig[i] = RXsig[i] * (lim_lvl/(Comp_rate * g_lim+lim_lvl) );
         }
         //for SQL
@@ -516,7 +540,7 @@ void loop(void) {
         {
           for(int i=0; i<BLOCK_SAMPLES; i++){
             Rch_out[i] = 0;
-            Lch_out[i] = Qu_TXsig[i]*LO_Q[pt_LO] + Iu_TXsig[i]*LO_I[pt_LO];
+            Lch_out[i] = ( Qu_TXsig[i]*LO_Q[pt_LO] + Iu_TXsig[i]*LO_I[pt_LO] ) * OUTLEVEL_SSB;
             pt_LO++; if(pt_LO==N_LO) pt_LO=0;
           }        
         }
@@ -546,7 +570,7 @@ void loop(void) {
         // Up Conversion
         for(int i=0; i<BLOCK_SAMPLES; i++){
           Rch_out[i] = 0;
-          Lch_out[i] = Iu_TXsig[i] * LO_Q[pt_LO]; 
+          Lch_out[i] = ( Iu_TXsig[i] * LO_Q[pt_LO] ) * OUTLEVEL_AM; 
           pt_LO++; if(pt_LO==N_LO) pt_LO=0;
         }
       }
@@ -583,7 +607,7 @@ void loop(void) {
         // Up conversion
         for(int i=0; i<BLOCK_SAMPLES; i++){
           Rch_out[i] = 0; 
-          Lch_out[i] = Qu_TXsig[i]*LO_Q[pt_LO] + Iu_TXsig[i]*LO_I[pt_LO];
+          Lch_out[i] = ( Qu_TXsig[i]*LO_Q[pt_LO] + Iu_TXsig[i]*LO_I[pt_LO] ) * OUTLEVEL_FM;
           pt_LO++; if(pt_LO==N_LO) pt_LO=0;
         }
 
@@ -597,7 +621,7 @@ void loop(void) {
           for(int i=0; i<BLOCK_SAMPLES; i++)
           {
             Rch_out[i] = SIDE_TONE_VOL*lim_lvl*side_tone[pt_st];
-            Lch_out[i] = (5.0e9/DOWN_SAMPLE) * LO_Q[pt_LO]; 
+            Lch_out[i] = ( OUTLEVEL_CW * 5.0e9/DOWN_SAMPLE) * LO_Q[pt_LO]; 
             pt_LO++; if(pt_LO == N_LO) pt_LO=0;
             pt_st+= CW_TONE/10; if(pt_st >= fsample/10) pt_st = 0;
           }
@@ -628,7 +652,7 @@ void loop(void) {
     //Output to I2S codec
     j=0;
     float m;
-    if( (f_TX == false && f_MODE == FM  && f_SQLMUTE == true) || MUTE_Timer>0 ) m=0; else m=Gain_OUTPUT;
+    if( (f_TX == false && f_MODE == FM  && f_SQLMUTE == true) || MUTE_Timer>0 ) m=0; else m=1.0f;
     
     for (int i=0; i<BLOCK_SAMPLES; i++) 
     {
@@ -944,10 +968,19 @@ void alt_task(void *args)
     Sig_Mag -= Th_AGC;
     if( Sig_Mag<0 ) Sig_Mag = 0;
     Sig_Mag /= (Mag_max - Th_AGC);
-    if(zAGC>Sig_Mag)
-      zAGC = Sig_Mag*0.03 + zAGC*0.97; 
+
+    if(f_TX == false && MUTE_Timer == 0)
+    {
+      if(zAGC>Sig_Mag)
+        zAGC = Sig_Mag*0.03 + zAGC*0.97; 
+      else
+        zAGC = Sig_Mag;
+    }
     else
-      zAGC = Sig_Mag;
+    {
+      zAGC = 0;
+    }
+
     DAC_AGC.outputVoltage(zAGC*REF_VOLTAGE);
 
 
