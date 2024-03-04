@@ -2,7 +2,10 @@
 16.93MHz All mode TRX on ESP32-S3
 
  by JF3HZB/T.Uebo, Tj Lab
- Jan. 30, 2024
+ 
+ver. 1.00  Jan. 30, 2024
+ver. 1.01  Mar.  4, 2024
+
 
 
 Arduino IDE 2.2.1
@@ -29,7 +32,7 @@ Used Libraries
 */
 
 #define NAME "All Mode SDR TRX"
-#define VERSION "Ver. 1.00"
+#define VERSION "Ver. 1.01"
 #define ID "JF3HZB/Tj Lab"
 
 #include <driver/i2s.h>
@@ -868,7 +871,10 @@ void alt_task(void *args)
     else if(f_MODE == CWU || f_MODE == CWL)
     {
       dfo = 0.4f *dfo + fo_CW;
-      dfw = 0.15f*dfw + fw_CW;
+	  
+      //dfw = 0.15f*dfw + fw_CW;
+	  dfw = 0.25f*dfw + fw_CW;   // ver. 1.01
+	  
       if(dfw<50.0f) dfw=50.0f;
 
       fl = dfo - 0.5f*dfw;

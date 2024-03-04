@@ -31,7 +31,8 @@
 #define fw_AM  8000.0f   //[Hz]
 #define CW_TONE 700      //[Hz]
 #define fo_CW   CW_TONE  //[Hz]
-#define fw_CW   500.0f   //[Hz]
+//#define fw_CW   500.0f   //[Hz]
+#define fw_CW  1000.0f   //[Hz]   ver. 1.01
 
 
 // Time constant for AGC
