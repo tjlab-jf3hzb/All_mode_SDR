@@ -1,5 +1,5 @@
 /*
-40MHz All mode TRX on ESP32-S3
+16MHz All mode TRX on ESP32-S3
 
  by JF3HZB/T.Uebo, Tj Lab
  
