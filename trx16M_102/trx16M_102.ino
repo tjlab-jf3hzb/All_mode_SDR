@@ -5,7 +5,7 @@
  
 ver. 1.00  Feb. 25, 2024
 ver. 1.01  Mar.  4, 2024
-ver. 1.02  Mar. 15, 2024   Gaussian filter for CW mode
+ver. 1.02  July  8, 2024   Gaussian filter for CW mode
 
 Arduino IDE 2.2.1
 
